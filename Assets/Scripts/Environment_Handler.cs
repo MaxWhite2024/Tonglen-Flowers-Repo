@@ -18,15 +18,11 @@ public class Environment_Handler : MonoBehaviour
     private GameObject part_clone;
 
     //The following GameObject vars do NOT need to be set from inspector
-    private MeshRenderer ocean_renderer;
     private Light dir_light;
     private Transform spawn_loc;
 
     void Awake()
     {
-        //find ocean_renderer
-        ocean_renderer = GameObject.FindWithTag("Ocean_Tag").GetComponent<MeshRenderer>();
-
         //find directional light
         dir_light = GameObject.FindWithTag("Dir_Light_Tag").GetComponent<Light>();
 
@@ -39,9 +35,6 @@ public class Environment_Handler : MonoBehaviour
         //Set skybox to peace_skybox
         RenderSettings.skybox = peace_skybox;
 
-        //set ocean_renderer to peace_blue
-        ocean_renderer.material = peace_blue;
-
         //set dir_light intensity to 1f
         dir_light.intensity = 1f;
     }
@@ -50,9 +43,6 @@ public class Environment_Handler : MonoBehaviour
     {
         //Set skybox to peace_skybox
         RenderSettings.skybox = peace_skybox;
-
-        //set ocean_renderer to peace_blue
-        ocean_renderer.material = peace_blue;
 
         //set dir_light intensity to 1f
         dir_light.intensity = 1f;
@@ -66,9 +56,6 @@ public class Environment_Handler : MonoBehaviour
     {
         //Set skybox to stress_skybox
         RenderSettings.skybox = stress_skybox;
-
-        //set ocean_renderer to peace_blue
-        ocean_renderer.material = stress_blue;
 
         //set dir_light intensity to 1f
         dir_light.intensity = 0.25f;
