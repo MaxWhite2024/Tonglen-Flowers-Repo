@@ -13,6 +13,7 @@ public class Breath_Handler : MonoBehaviour
     private Inner_Circle_Behavior inner_circle_behavior;
     private Microphone_Behavior microphone_behavior;
     private Accuracy_Display accuracy_display;
+    private Rose_Animation_Behavior rose_animation_behavior;
 
     //number vars
     [SerializeField] private float breath_amount;
@@ -42,6 +43,9 @@ public class Breath_Handler : MonoBehaviour
 
         //find Accuracy_Display
         accuracy_display = GameObject.FindWithTag("Percent_Tag").GetComponent<Accuracy_Display>();
+
+        //find rose_animation_behavior
+        rose_animation_behavior = GameObject.FindWithTag("Rose_Tag").GetComponent<Rose_Animation_Behavior>();
     }
 
     void Update()
@@ -169,8 +173,11 @@ public class Breath_Handler : MonoBehaviour
         float peak_percent = (peak_hold_amount / Rhythm_Behavior.peak_hold_time) * 100f;
         if(Rhythm_Behavior.cur_rhythm_state == Rhythm_State.OUT || (Rhythm_Behavior.cur_rhythm_state == Rhythm_State.PEAK_HOLD && peak_percent >= 75f))
         {
-            //move boat by percentage of breath ammount divided by in_time
-            boat_behavior.Move_Boat(breath_amount / Rhythm_Behavior.in_time);
+            //OLD CODE: move boat by percentage of breath ammount divided by in_time
+            //boat_behavior.Move_Boat(breath_amount / Rhythm_Behavior.in_time);
+
+            //NEW CODE: make flower bloom by breath_amount
+            rose_animation_behavior.Add_To_Animation_Amount(breath_amount / 10f);
 
             //if current state is STRESS then...
             if(Player_State_Behavior.cur_player_state == Player_State.STRESS)

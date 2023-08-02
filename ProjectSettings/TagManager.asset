@@ -12,13 +12,13 @@ TagManager:
   - Healthbar_Tag
   - Fail_Menu_Tag
   - Percent_Tag
-  - Ocean_Tag
   - Dir_Light_Tag
   - Rain_Particles_Tag
   - Checkpoint_Reach_Tag
   - Demo_End_Tag
   - Microphone_Tag
   - Microphone_Toggle_Tag
+  - Rose_Tag
   layers:
   - Default
   - TransparentFX
