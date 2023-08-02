@@ -3,17 +3,32 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player_Boat_Tag
+  - Pause_Menu_Tag
+  - Pause_Button_Tag
+  - Manager_Tag
+  - Inner_Circle_Tag
+  - Healthbar_Tag
+  - Fail_Menu_Tag
+  - Percent_Tag
+  - Ocean_Tag
+  - Dir_Light_Tag
+  - Rain_Particles_Tag
+  - Checkpoint_Reach_Tag
+  - Demo_End_Tag
+  - Microphone_Tag
+  - Microphone_Toggle_Tag
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Checkpoints
   - Water
   - UI
-  - 
-  - 
-  - 
+  - ScenarioTriggers
+  - PlayerBoat
+  - DemoEnd
   - 
   - 
   - 
