@@ -176,8 +176,8 @@ public class Breath_Handler : MonoBehaviour
             //OLD CODE: move boat by percentage of breath ammount divided by in_time
             //boat_behavior.Move_Boat(breath_amount / Rhythm_Behavior.in_time);
 
-            //NEW CODE: make flower bloom by breath_amount
-            rose_animation_behavior.Add_To_Animation_Amount(breath_amount / 10f);
+            //NEW CODE: make flower bloom by (breath_amount divided by in_time) / 3f
+            rose_animation_behavior.Add_To_Animation_Amount((breath_amount / Rhythm_Behavior.in_time) / 3f);
 
             //if current state is STRESS then...
             if(Player_State_Behavior.cur_player_state == Player_State.STRESS)
