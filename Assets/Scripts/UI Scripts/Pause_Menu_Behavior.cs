@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //Pause_Menu_Behavior handles the player inputs in regards to pausing and unpausing
 public class Pause_Menu_Behavior : MonoBehaviour
