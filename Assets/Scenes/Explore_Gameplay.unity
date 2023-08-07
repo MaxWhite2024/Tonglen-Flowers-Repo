@@ -3266,6 +3266,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007872743}
   m_CullTransparentMesh: 1
+--- !u!1 &1008876676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1008876677}
+  m_Layer: 7
+  m_Name: Particle System Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1008876677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008876676}
+  m_LocalRotation: {x: -0.83353406, y: 0, z: 0, w: 0.5524681}
+  m_LocalPosition: {x: 0, y: 109.5, z: 141.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1474024078}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -112.927, y: 0, z: 0}
 --- !u!1 &1037625144
 GameObject:
   m_ObjectHideFlags: 0
@@ -4336,8 +4367,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1307995336}
-  - component: {fileID: 1307995335}
-  - component: {fileID: 1307995334}
   - component: {fileID: 1307995333}
   - component: {fileID: 1307995332}
   - component: {fileID: 1307995331}
@@ -4407,7 +4436,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1307995334}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Breath_Handler, Assembly-CSharp
         m_MethodName: Breath
         m_Mode: 0
@@ -4442,34 +4471,6 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay Actions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1307995334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307995330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b984125b847ba08419b13cbe69a8a757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  breath_amount: 0
-  is_breath_held_down: 0
-  has_prev_exhaled: 0
---- !u!114 &1307995335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307995330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbe9980460d5baf4ebe5bd6b8a8120d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time_counter: 0
 --- !u!4 &1307995336
 Transform:
   m_ObjectHideFlags: 0
@@ -5719,7 +5720,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1474024078}
-  - component: {fileID: 1474024077}
   - component: {fileID: 1474024076}
   - component: {fileID: 1474024075}
   - component: {fileID: 1474024074}
@@ -5792,19 +5792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environment_handler: {fileID: 0}
   health: 500
---- !u!114 &1474024077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474024073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ebd550b6505983499b9a5ae2d8b199a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dst_multiplier: 1500
 --- !u!4 &1474024078
 Transform:
   m_ObjectHideFlags: 0
@@ -5817,6 +5804,7 @@ Transform:
   m_LocalScale: {x: 0.31941, y: 0.31941, z: 0.31941}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1008876677}
   - {fileID: 258367295}
   m_Father: {fileID: 0}
   m_RootOrder: 5
