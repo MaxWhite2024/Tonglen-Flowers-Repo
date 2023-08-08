@@ -17,11 +17,6 @@ public class Rose_Animation_Behavior : MonoBehaviour
         rose_animator = GameObject.FindWithTag("Rose_Tag").GetComponent<Animator>();
     }
 
-    void Start()
-    {
-        //
-    }
-
     void Update()
     {
         //if animation_amount is greater than zero,...
