@@ -12,6 +12,7 @@ public class Pause_Menu_Behavior : MonoBehaviour
     private GameObject pause_menu_obj;
     private GameObject pause_button_obj;
     private GameObject fail_menu_obj;
+    private GameObject demo_end_menu_obj;
     private Rhythm_Behavior rhythm_behavior;
     private Inner_Circle_Behavior inner_circle_behavior;
     private Breath_Handler breath_handler;
@@ -21,23 +22,29 @@ public class Pause_Menu_Behavior : MonoBehaviour
 
     void Awake()
     {
-        //find and disable pause_menu_obj
+        //find pause_menu_obj
         pause_menu_obj = GameObject.FindWithTag("Pause_Menu_Tag");
 
         //find pause_button_obj
         pause_button_obj = GameObject.FindWithTag("Pause_Button_Tag");
 
-        //get and hide fail_menu obj
+        //get fail_menu obj
         fail_menu_obj = GameObject.FindWithTag("Fail_Menu_Tag");
 
-        //find rhythm_behavior
-        rhythm_behavior = GameObject.FindWithTag("Manager_Tag").GetComponent<Rhythm_Behavior>();
+        //get demo_end_menu_obj
+        demo_end_menu_obj = GameObject.FindWithTag("Demo_End_Tag");
 
-        //find inner_circle_behavior
-        inner_circle_behavior = GameObject.FindWithTag("Inner_Circle_Tag").GetComponent<Inner_Circle_Behavior>();
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Breath_Gameplay"))
+        {
+            //find rhythm_behavior
+            rhythm_behavior = GameObject.FindWithTag("Manager_Tag").GetComponent<Rhythm_Behavior>();
 
-        //find breath_handler
-        breath_handler = GameObject.FindWithTag("Manager_Tag").GetComponent<Breath_Handler>();
+            //find inner_circle_behavior
+            inner_circle_behavior = GameObject.FindWithTag("Inner_Circle_Tag").GetComponent<Inner_Circle_Behavior>();
+
+            //find breath_handler
+            breath_handler = GameObject.FindWithTag("Manager_Tag").GetComponent<Breath_Handler>();
+        }
         
         //Set timeScale to 1
         Time.timeScale = 1f;
@@ -50,6 +57,9 @@ public class Pause_Menu_Behavior : MonoBehaviour
 
         //hide fail_menu_obj
         fail_menu_obj.SetActive(false);
+
+        //hide demo end menu
+        demo_end_menu_obj.SetActive(false);
     }
 
     public void Pause_Or_Resume(InputAction.CallbackContext context)
@@ -92,14 +102,17 @@ public class Pause_Menu_Behavior : MonoBehaviour
         //Set timeScale to 1
         Time.timeScale = 1f;
 
-        //update amounts
-        rhythm_behavior.Update_Amounts();
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Breath_Gameplay"))
+        {
+            //update amounts
+            rhythm_behavior.Update_Amounts();
 
-        //reset inner circle
-        inner_circle_behavior.Reset_Inner_Circle();
+            //reset inner circle
+            inner_circle_behavior.Reset_Inner_Circle();
 
-        //reset breath_amount
-        breath_handler.Reset_Breath_Amount();
+            //reset breath_amount
+            breath_handler.Reset_Breath_Amount();
+        }
     }
 
     public void Quit_Game()
