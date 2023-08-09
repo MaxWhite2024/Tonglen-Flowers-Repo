@@ -44,6 +44,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void Handle_Movement()
     {
-        
+        //add x direction inputs to move_dir.x
+        move_dir.x = move.ReadValue<Vector2>().x;
+
+        //add y direction inputs to move_dir.z
+        move_dir.z = move.ReadValue<Vector2>().y;
+
+        //move character controller
+        char_cont.SimpleMove(move_dir * move_speed);
     }
 }
