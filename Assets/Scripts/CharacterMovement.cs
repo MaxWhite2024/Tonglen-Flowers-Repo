@@ -14,7 +14,6 @@ public class CharacterMovement : MonoBehaviour
 
     //movement vars
     [SerializeField] private float move_speed;
-    [SerializeField] private float max_speed;
     private Vector3 move_dir = Vector3.zero;
 
     void Awake()
@@ -28,12 +27,16 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        //set move (of type InputAction) to the "Move" action of ExploreGameplayActions
         move = player_input_actions.ExploreGameplayActions.Move;
+
+        //enable ExploreGameplayActions 
         player_input_actions.ExploreGameplayActions.Enable();
     }
 
     private void OnDisable()
     {
+        //disable ExploreGameplayActions
         player_input_actions.ExploreGameplayActions.Disable();
     }
 
