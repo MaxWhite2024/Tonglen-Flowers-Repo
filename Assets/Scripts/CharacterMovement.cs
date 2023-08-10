@@ -7,16 +7,22 @@ public class CharacterMovement : MonoBehaviour
 {
     //Character controller and rigidbody
     private CharacterController char_cont;
-    private Rigidbody rb;
 
     //Input vars
     private Player_Input_Actions player_input_actions;
     private InputAction move;
 
     //movement vars
-    [SerializeField] private float move_speed;
-    [SerializeField] private float player_gravity;
+    [SerializeField] private float move_speed = 10f;
     private Vector3 move_dir = Vector3.zero;
+
+    //rotation vars
+    [SerializeField] private float smooth_time = 0.05f;
+    private float rotation_velocity;
+
+    //gravity vars
+    [SerializeField] private float player_gravity = -10f;
+    private float gravitational_velocity;
 
     void Awake()
     {
@@ -25,9 +31,6 @@ public class CharacterMovement : MonoBehaviour
 
         //find character controller
         char_cont = gameObject.GetComponent<CharacterController>();
-
-        //find rigidbody
-        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -49,7 +52,9 @@ public class CharacterMovement : MonoBehaviour
     {
         Handle_Movement();
 
-        Look_At();
+        Handle_Rotation();
+
+        Handle_Gravity();
     }
 
     private void Handle_Movement()
@@ -60,21 +65,40 @@ public class CharacterMovement : MonoBehaviour
         //make y direction inputs equal move_dir.z
         move_dir.z = move.ReadValue<Vector2>().y;
 
-        //add player_gravity to move_dir.y
-        move_dir.y += player_gravity * Time.deltaTime;
-
         //move character controller
-        char_cont.SimpleMove(move_dir * move_speed);
+        char_cont.Move(move_dir * move_speed * Time.deltaTime);
     }
 
-    private void Look_At()
+    private void Handle_Rotation()
     {
-        Vector3 direction = rb.velocity;
-        direction.y = 0f;
+        if(move.ReadValue<Vector2>().sqrMagnitude == 0)
+            return;
+        //calculate target angle
+        var target_angle = Mathf.Atan2(move_dir.x, move_dir.z) * Mathf.Rad2Deg;
 
-        if(move.ReadValue<Vector2>().sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
-            this.rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        //calculate angle from target angle
+        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target_angle, ref rotation_velocity, smooth_time);
+
+        //rotate player
+        transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
+    }
+
+    private void Handle_Gravity()
+    {
+        //if player is grounded,...
+        if(char_cont.isGrounded && gravitational_velocity < 0f)
+        {
+            //apply a little gravity
+            gravitational_velocity = -1f;
+        }
+        //else, player is not grounded,...
         else
-            rb.angularVelocity = Vector3.zero;
+        {
+            //calculate gravitational_velocity
+            gravitational_velocity += player_gravity * Time.deltaTime;
+        }
+  
+        //apply gravity 
+        move_dir.y = gravitational_velocity;
     }
 }
