@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
-    //Character controller and rigidbody
+    //Character controller
     private CharacterController char_cont;
 
     //Input vars
