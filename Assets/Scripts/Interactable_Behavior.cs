@@ -42,20 +42,8 @@ public class Interactable_Behavior : MonoBehaviour
             //if player is in range of interactable,...
             if(cur_dist <= interact_dist)
             {
-                Debug.Log("Interacted!");
+                Debug.Log("Interacted with " + gameObject.name);
             }
         }
     }
-
-    // public void Interact_With_Object(InputAction.CallbackContext context)
-    // {
-    //     //calculate cur_dist
-    //     cur_dist = Vector3.Distance(player_trans.position, transform.position);
-
-    //     //if player is in range of interactable and Interact button is pressed,...
-    //     if(cur_dist <= interact_dist && context.performed)
-    //     {
-    //         Debug.Log("Interacted!");
-    //     }
-    // }
 }
