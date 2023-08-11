@@ -9,7 +9,7 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController char_cont;
 
     //Input vars
-    private Player_Input_Actions player_input_actions;
+    private PlayerInput player_input;
     private InputAction move;
 
     //movement vars
@@ -27,25 +27,16 @@ public class CharacterMovement : MonoBehaviour
     void Awake()
     {
         //get new input actions
-        player_input_actions = new Player_Input_Actions();
+        player_input = GameObject.FindWithTag("Manager_Tag").GetComponent<PlayerInput>();
 
         //find character controller
         char_cont = gameObject.GetComponent<CharacterController>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        //set move (of type InputAction) to the "Move" action of ExploreGameplayActions
-        move = player_input_actions.ExploreGameplayActions.Move;
-
-        //enable ExploreGameplayActions 
-        player_input_actions.ExploreGameplayActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        //disable ExploreGameplayActions
-        player_input_actions.ExploreGameplayActions.Disable();
+        //set move (of type InputAction) to the "Move" action of player_input
+        move = player_input.actions["Move"];
     }
 
     void Update()

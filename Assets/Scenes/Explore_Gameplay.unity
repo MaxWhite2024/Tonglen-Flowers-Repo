@@ -5933,19 +5933,7 @@ MonoBehaviour:
     m_ActionId: 559452e6-5bbc-481a-8628-85266b5f1c15
     m_ActionName: 'Explore Gameplay Actions/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1048672682}
-        m_TargetAssemblyTypeName: Interactable_Behavior, Assembly-CSharp
-        m_MethodName: Interact_With_Object
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 0d885db2-e3cc-4ed2-8093-8556cb66d522
     m_ActionName: 'Explore Gameplay Actions/Interact[/Keyboard/space,/Keyboard/i,/Keyboard/e]'
   - m_PersistentCalls:
