@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Change_Camera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Gameobject vars
+    [SerializeField] private GameObject old_camera;
+    [SerializeField] private GameObject new_camera;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other_collider)
     {
-        
-    }
+        //if the collider that touched this trigger is the player,...
+        if(other_collider.CompareTag("Player_Tag"))
+        {
+            //turn off old_camera
+            old_camera.SetActive(false);
+
+            //turn on new_camera
+            new_camera.SetActive(true);
+        }
+    } 
 }
