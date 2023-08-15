@@ -24,6 +24,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float player_gravity = -10f;
     private float gravitational_velocity;
 
+    //camera var
+    public static Camera active_camera;
+
     void Awake()
     {
         //get new input actions
@@ -37,24 +40,48 @@ public class CharacterMovement : MonoBehaviour
     {
         //set move (of type InputAction) to the "Move" action of player_input
         move = player_input.actions["Move"];
+
+        //set active camera to 
+        active_camera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     void Update()
     {
-        Handle_Movement();
-
         Handle_Rotation();
 
+        Handle_Movement();
+
         Handle_Gravity();
+
+        //Debug.Log("Active Camera is: " + active_camera.gameObject.name);
     }
 
     private void Handle_Movement()
     {
-        //make x direction inputs equal move_dir.x
-        move_dir.x = move.ReadValue<Vector2>().x;
+        //get input
+        Vector2 input_dir = move.ReadValue<Vector2>();
 
-        //make y direction inputs equal move_dir.z
-        move_dir.z = move.ReadValue<Vector2>().y;
+        //determine vertical and horizontal inputs
+        float vertical_input = input_dir.y;
+        float horizontal_input = input_dir.x;
+
+        //Get forward and right directions 
+        Vector3 forward = active_camera.transform.forward;
+        Vector3 right = active_camera.transform.right;
+
+        //get rid of y values and re-normalize forward and right
+        forward.y = 0f;
+        right.y = 0f;
+        forward = forward.normalized;
+        right = right.normalized;
+
+        //create direction relative input vectors
+        Vector3 forward_relative_input = vertical_input * forward;
+        Vector3 right_relative_input = horizontal_input * right;
+
+        //apply direction relative movement vectors to move_dir
+        move_dir.x = forward_relative_input.x + right_relative_input.x;
+        move_dir.z = forward_relative_input.z + right_relative_input.z;
 
         //move character controller
         char_cont.Move(move_dir * move_speed * Time.deltaTime);
@@ -64,8 +91,10 @@ public class CharacterMovement : MonoBehaviour
     {
         if(move.ReadValue<Vector2>().sqrMagnitude == 0)
             return;
+
         //calculate target angle
         var target_angle = Mathf.Atan2(move_dir.x, move_dir.z) * Mathf.Rad2Deg;
+        // + active_camera.transform.eulerAngles.y;
 
         //calculate angle from target angle
         var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, target_angle, ref rotation_velocity, smooth_time);

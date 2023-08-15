@@ -18,6 +18,9 @@ public class Change_Camera : MonoBehaviour
 
             //turn on new_camera
             new_camera.SetActive(true);
+
+            //set active camera to new_camera
+            CharacterMovement.active_camera = new_camera.GetComponent<Camera>();
         }
     } 
 }
